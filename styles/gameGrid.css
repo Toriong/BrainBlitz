@@ -12,8 +12,11 @@
 }
 
 /* the container for each dot */
-.game-grid>div {
-    border: solid 1px pink;
+
+
+.btn-cell {
+    border: solid red 1px;
+    position: relative
 }
 
 @media (min-width: 992px) and (max-width: 1440px) {

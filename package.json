@@ -1,0 +1,15 @@
+{
+  "name": "brainblitz",
+  "version": "1.0.0",
+  "description": "\"Brain exercise game testing one's memory.\"",
+  "type": "module",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "game"
+  ],
+  "author": "Gabe Torion",
+  "license": "ISC"
+}
