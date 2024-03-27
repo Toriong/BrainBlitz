@@ -1,0 +1,54 @@
+@import "./styles/gameGrid.css";
+
+:root {
+    --stripe-grey: #EDF0F6
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px
+}
+
+#main {}
+
+#navbar {
+    height: 100px;
+    border-bottom: solid 2px var(--stripe-grey);
+}
+
+#content {
+    height: 83vh;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+@media(min-width: 992px) {
+    .d-md-flex {
+        display: flex
+    }
+
+    .justify-content-md-center {
+        justify-content: center;
+    }
+
+    .align-items-md-center {
+        align-items: center;
+    }
+}
+
+@media(min-width: 1024px) {
+    #navbar {
+        height: 70px;
+    }
+}
