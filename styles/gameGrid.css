@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 /* create a media query for how many dots to repeat */
 .game-grid {
     display: grid;
@@ -7,16 +9,23 @@
     padding-top: 20px;
     max-height: 800px;
     min-height: 500px;
-    /* border: solid 1px red; */
-    /* grid-template-rows: repeat(10, 1fr); */
 }
 
 /* the container for each dot */
-
-
 .btn-cell {
-    border: solid red 1px;
     position: relative
+}
+
+.dot-btn {
+    width: 25px;
+    height: 25px;
+}
+
+@media(max-width: 300px) {
+    .dot-btn {
+        width: 17px;
+        height: 17px;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1440px) {
