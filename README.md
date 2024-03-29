@@ -1,2 +1,2 @@
 # BrainBlitz
-A memory-based challenge game written in jquery with a php server.
+A memory-based challenge game written in jquery with a phoenix/elixir server.
