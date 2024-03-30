@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id"
+        content="650291073552-0vsvpnts39gtn2uit45gt7jkaf91d3md.apps.googleusercontent.com">
+    <title>Create Account</title>
+</head>
+
+<body>
+    <h1>Create An Account</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+</body>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="module" src="{% static 'js/createAccountMain.js' %}"></script>
+
+</html>

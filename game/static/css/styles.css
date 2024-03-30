@@ -1,0 +1,100 @@
+@import './variables.css';
+@import './animations.css';
+@import "./gameGrid.css";
+@import "./modals.css";
+
+html,
+body {
+    margin: 0px;
+    padding: 0px
+}
+
+* {
+    font-family: cursive;
+}
+
+#navbar {
+    height: 100px;
+    border-bottom: solid 2px var(--stripe-grey);
+    z-index: -1;
+}
+
+#content {
+    height: 83vh;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.center-absolutely {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.no-btn-styles {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.rounded {
+    border-radius: 3rem;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+/* borders: */
+.border-red {
+    border: solid 1px red;
+}
+
+.bg-succes {
+    background-color: #28A745;
+}
+
+
+@media(min-width: 992px) {
+    .d-md-flex {
+        display: flex
+    }
+
+    .justify-content-md-center {
+        justify-content: center;
+    }
+
+    .align-items-md-center {
+        align-items: center;
+    }
+}
+
+@media(min-width: 1024px) {
+    #navbar {
+        height: 70px;
+    }
+}
