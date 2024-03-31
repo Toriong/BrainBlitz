@@ -33,3 +33,30 @@
     animation: fadeout-down .4s linear;
     animation-fill-mode: forwards;
 }
+
+/* @keyframes smpulse {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.25);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    75% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-element {
+    transform: scale(1);
+    animation: smpulse 2s infinite
+} */

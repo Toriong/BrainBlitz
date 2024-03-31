@@ -16,26 +16,32 @@
         {{nav_bar | safe}}
         <div id="content">
             <div id="main-menu-pg">
-                <h1>Brain Blitz⚡</h1>
-                <button id="play-btn">PLAY!</button>
-                <button id="leaderboard-btn">Leaderboard</button>
-                <button id="user-profile-btn" class="d-flex justify-content-center align-items-center">
-                    Loading
-                    <div class="ms-half">
-                        .
+                <h1 class="my-2">Brain Blitz⚡</h1>
+                <section id="btn-sec-main-menu-pg"
+                    class="d-flex justify-content-center align-items-center direction-col">
+                    <button id="play-btn">PLAY!</button>
+                    <button id="how-to-play">How To Play</button>
+                    <button id="leaderboard-btn">Leaderboard</button>
+                    <!-- <button id="leaderboard-btn">Create Account</button> -->
+                    <div id="loading-main-menu-pg" class="d-flex justify-content-center align-items-center">
+                        Loading
+                        <div id="dot-1" class="ms-small">
+                            .
+                        </div>
+                        <div id="dot-2" class="ms-small">
+                            .
+                        </div>
+                        <div id="dot-3" class="ms-small">
+                            .
+                        </div>
                     </div>
-                    <div class="ms-half">
-                        .
-                    </div>
-                    <div class="ms-half">
-                        .
-                    </div>
-                </button>
+                </section>
             </div>
         </div>
     </div>
 </body>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
+<script type="module" src="{% static 'js/mainMenu.js' %}"></script>
 
 </html>
