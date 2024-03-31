@@ -1,10 +1,11 @@
 from brainblitzapp.settings import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_PROJECT_ID
 
 
-class GoogleAuthCredentials:
+class Credentials:
     client_id: str
     project_id: str
     client_secret: str
+    
     
     def __init__(self) -> None:
         self.client_id = GOOGLE_CLIENT_ID

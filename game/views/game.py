@@ -6,4 +6,4 @@ from django.views.decorators.csrf import csrf_exempt
 def handle_game_display_view(request: HttpRequest) -> HttpResponse:
     print('request: ', request)
     
-    return render(request, 'game/index.html')    
+    return render(request, 'game/game.html')    

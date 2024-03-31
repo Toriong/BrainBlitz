@@ -108,22 +108,11 @@
         transform: translate(-50%, -390%);
     }
 
-    /* 50% {
-        opacity: .5;
-        transform: translate(-50%, -370%);
-    }
-
-    75% {
-        opacity: .25;
-        transform: translate(-50%, -350%);
-    } */
-
     100% {
         opacity: 0;
         transform: translate(-50%, -330%);
     }
 }
-
 
 @keyframes fadeinresultsmodal {
     0% {

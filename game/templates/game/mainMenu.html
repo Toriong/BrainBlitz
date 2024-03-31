@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utils.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mainMenu/mainMenu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <title>Brain ⚡ | Main 📋</title>
+</head>
+
+<body>
+    <div id="main" class="position-relative" style="height: 100vh; overflow: hidden;">
+        {{nav_bar | safe}}
+        <div id="content">
+            <div id="main-menu-pg">
+                <h1>Brain Blitz⚡</h1>
+                <button id="play-btn">PLAY!</button>
+                <button id="leaderboard-btn">Leaderboard</button>
+                <button id="user-profile-btn" class="d-flex justify-content-center align-items-center">
+                    Loading
+                    <div class="ms-half">
+                        .
+                    </div>
+                    <div class="ms-half">
+                        .
+                    </div>
+                    <div class="ms-half">
+                        .
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
+
+</html>
