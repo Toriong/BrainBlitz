@@ -1,3 +1,4 @@
+import { createObj } from "../utils/utils.js";
 import { addEventListeners, addStyles } from "./fns.js"
 
 export class Button {
@@ -6,7 +7,7 @@ export class Button {
     constructor(
         txtElement,
         handleOnClick = null,
-        { className = '', id = '' },
+        { className, id } = {},
         styles = [],
     ) {
         try {
@@ -26,9 +27,13 @@ export class Button {
                 addStyles(btn, styles)
             }
 
-            btn.attr('id', id)
-
-            btn.attr('class', className)
+            if (id) {
+                btn.attr('id', id)
+            }
+            console.log('className: ', className)
+            if (className) {
+                btn.attr('class', className)
+            }
 
             btn.on('click', handleOnClick)
 
@@ -75,3 +80,38 @@ export class Element {
     }
 }
 
+export class Cookies {
+    get(name) {
+        const cookies = document.cookie;
+
+        if (!cookies) {
+            return null;
+        }
+
+        const parsedCookies = this.getAllParsedCookies();
+
+        return parsedCookies[name];
+    }
+
+    getAllUnparsedCookies() {
+        return document.cookie;
+    }
+
+    getAllParsedCookies() {
+        const cookiesKeysAndFields = document.cookie.split(';').map(keyAndVal => keyAndVal.split('='));
+
+        return createObj(cookiesKeysAndFields);
+    }
+
+    set(name, value, expiration) {
+        try {
+            if (value.includes('=')) {
+                throw new Error('Value must not include a "=" sign.');
+            }
+
+            document.cookie = expiration ? `${name}=${value}; expires=${expiration}` : `${name}=${value};`;
+        } catch (error) {
+            console.error('Failed to set cookies. Reason: ', error);
+        }
+    }
+}

@@ -9,7 +9,7 @@ from .views.user_home_pg import render_user_home_pg
 # their username
 
 urlpatterns = [
-    path('/create-account', render_create_account_pg),
+    path('create-account', render_create_account_pg),
     path('google-auth-cred-receiver', handle_google_auth_creds_receiver),
     path('<str:user_id>/', render_user_home_pg, name='user_home')
 ]       

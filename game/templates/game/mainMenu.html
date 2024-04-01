@@ -16,7 +16,8 @@
         {{nav_bar | safe}}
         <div id="content">
             <div id="main-menu-pg">
-                <h1 class="my-2">Brain Blitz⚡</h1>
+                <h1 class="my-2 d-sm-block d-none">Brain Blitz⚡</h1>
+                <h1 class="my-2 d-block d-sm-none">Brain Blitz⚡</h1>
                 <section id="btn-sec-main-menu-pg"
                     class="d-flex justify-content-center align-items-center direction-col">
                     <button id="play-btn">PLAY!</button>
@@ -42,6 +43,7 @@
 </body>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
-<script type="module" src="{% static 'js/mainMenu.js' %}"></script>
+<script type="module" src="{% static 'js/mainMenu.js' %}">
+</script>
 
 </html>
