@@ -125,3 +125,7 @@
 .my-5 {
     margin: 5rem 0px !important;
 }
+
+.pointer {
+    cursor: pointer !important;
+}

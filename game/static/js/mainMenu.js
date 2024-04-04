@@ -1,26 +1,54 @@
 import { Button, Cookies } from "./dom/classes.js";
 import { addCssClasses, removeElement } from "./dom/fns.js";
 
-
 (() => {
     const LOADING_TXT_DIV_ID = '#loading-main-menu-pg'
     const BTNS_SEC_ID = '#btn-sec-main-menu-pg'
-    function handleUserBtnClick() {
 
+    function handleProfileBtnClick() {
+
+    }
+
+    function handleLoginBtnClick() {
+
+    }
+
+    function handleOnLeaderBoardBtnClick() {
+
+    }
+
+    function handleHowToPlayBtnClick() {
+
+    }
+
+    function handlePlayBtnClick() {
+        console.log('was clicked')
+        window.location.href = '/game'
+    }
+
+    function applyEventListeners() {
+        console.log('hey there meng!')
+
+        $('#play-btn').on('click', () => {
+            console.log('hey there')
+        })
     }
 
     function handleOnPgDisplay() {
         const dots = Array.from($('#dot-1, #dot-2, #dot-3'))
         const loadingTxtDiv = $(LOADING_TXT_DIV_ID)
-        const btnSec = $(BTNS_SEC_ID)
+        const btnsSec = $(BTNS_SEC_ID)
         const cookies = new Cookies()
         let btnTxt = "Profile"
+        let handleBtnClickFn = handleProfileBtnClick
 
         if (!cookies.get('userId')) {
-            btnTxt = "Create Account/Login"
+            btnTxt = "Login"
+            handleBtnClickFn = handleLoginBtnClick
         }
 
-        const userBtn = new Button(btnTxt, handleUserBtnClick)
+        console.log('yo there meng why are you not executing')
+        const { button: userBtn } = new Button(btnTxt, handleBtnClickFn, 'fade-element-in')
 
         setTimeout(() => {
             addCssClasses(dots[0], 'jump-element')
@@ -34,16 +62,24 @@ import { addCssClasses, removeElement } from "./dom/fns.js";
             }, 300);
         })
 
+        console.log('hey there')
         setTimeout(() => {
             addCssClasses(loadingTxtDiv, 'fade-element-out')
 
             setTimeout(() => {
                 removeElement(LOADING_TXT_DIV_ID)
 
-                // btnSec.append(userBtn)
+                setTimeout(() => {
+                    btnsSec.append(userBtn)
+
+                    $('#play-btn').on('click', handlePlayBtnClick)
+                    $('#how-to-play').on('click', handleHowToPlayBtnClick)
+                    $('#leaderboard-btn').on('click', handleOnLeaderBoardBtnClick)
+                }, 200)
             }, 400)
         }, 400)
     }
 
     handleOnPgDisplay()
+    applyEventListeners()
 })();

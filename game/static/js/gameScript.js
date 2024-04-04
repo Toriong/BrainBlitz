@@ -288,7 +288,8 @@ import { createArr, getRandomNum } from "./utils/utils.js";
             const { button } = new Button(
                 '',
                 () => handleDotBtnClick(index),
-                { className: 'no-btn-styles circle dot-btn', id: index },
+                'no-btn-styles circle dot-btn',
+                index,
                 [BORDER_PROPERTY_TUPLE_UNCOLORED_DOT]
 
             )

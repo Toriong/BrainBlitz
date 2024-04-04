@@ -26,6 +26,10 @@
     border-radius: var(--border-radius-main-menu-btns);
 }
 
+#main-menu-pg button {
+    cursor: pointer;
+}
+
 #loading-main-menu-pg,
 #main-menu-pg button {
     width: 450px;
@@ -35,7 +39,7 @@
 
 #loading-main-menu-pg,
 #main-menu-pg button:not(:first-of-type) {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 #main-menu-pg h1 {
@@ -89,6 +93,10 @@
     }
 }
 
+.fade-element-in {
+    animation: fadeoutelement 400ms reverse;
+}
+
 .jump-element {
     transform: translateY(0%);
     animation: jump 375ms infinite
@@ -126,7 +134,6 @@
 
     #main-menu-pg button {
         width: 90vw;
-
     }
 }
 

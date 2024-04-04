@@ -3,6 +3,27 @@
 @import "./gameGrid.css";
 @import "./modals.css";
 
+button {
+    cursor: pointer !important;
+}
+
+
+.d-flex {
+    display: flex
+}
+
+.d-block {
+    display: block
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
 html,
 body {
     margin: 0px;

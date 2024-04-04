@@ -7,7 +7,8 @@ export class Button {
     constructor(
         txtElement,
         handleOnClick = null,
-        { className, id } = {},
+        className = '',
+        id = '',
         styles = [],
     ) {
         try {
