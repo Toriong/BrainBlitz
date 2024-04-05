@@ -2,7 +2,7 @@
 
 import { Button, Cookies } from "./dom/classes.js";
 import { addCssClasses, removeElement } from "./dom/fns.js";
-
+import { MAIN_DIV_ID } from "./dom/vars.js";
 
 (() => {
     const LOADING_TXT_DIV_ID = '#loading-main-menu-pg'

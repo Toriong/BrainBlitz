@@ -5,3 +5,4 @@ export const lightColors = {
 }
 export const GAME_GRID_CLASS_NAME = 'game-grid'
 export const BACKDROP_CLASSNAME = 'backdrop'
+export const MAIN_DIV_ID = '#main'

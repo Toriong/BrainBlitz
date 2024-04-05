@@ -1,5 +1,6 @@
 import { Element } from "./classes.js"
-import { MAIN_DIV_ID } from "./vars.js";
+
+const MAIN_DIV_ID = '#main';
 
 export function addStyles(element, stylesArr) {
     stylesArr.forEach(([propertyName, propertyVal]) => {

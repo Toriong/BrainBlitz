@@ -10,7 +10,8 @@ import {
 } from "./dom/fns.js";
 import {
     BACKDROP_CLASSNAME,
-    lightColors
+    lightColors,
+    MAIN_DIV_ID
 } from "./dom/vars.js";
 import {
     FADE_IN_RESULTS_MODAL_CLASS_NAME,
@@ -19,7 +20,6 @@ import {
 } from "./modals/resultsModal.js";
 import { createArr, getRandomNum } from "./utils/utils.js";
 
-const MAIN_DIV_ID = '#main';
 
 (() => {
     const TOTAL_CELLS = 100;
