@@ -42,6 +42,8 @@ button {
     height: 100%;
 }
 
+
+
 html,
 body {
     margin: 0px;
@@ -58,10 +60,10 @@ body {
     z-index: -1;
 }
 
-#content {
+/* #content {
     height: 83vh;
     max-height: 1000px;
-}
+} */
 
 .d-flex {
     display: flex;
@@ -151,5 +153,15 @@ input:focus {
 @media(min-width: 1024px) {
     #navbar {
         height: 70px;
+    }
+}
+
+@media(min-width: 577px) {
+    .d-sm-block {
+        display: block;
+    }
+
+    .mt-sm-5 {
+        margin: 4rem;
     }
 }

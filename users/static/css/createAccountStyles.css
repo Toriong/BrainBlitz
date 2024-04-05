@@ -9,6 +9,7 @@
     margin: 15px 0px;
 }
 
+/* google sign in button */
 .g_id_signin>div>div {
     /* width: 150% !important; */
     width: 350px;
@@ -91,4 +92,32 @@
     content: "\2022";
     margin-right: 5px;
     color: #000;
+}
+
+.submit-btn-sec {
+    margin-top: 25px;
+}
+
+@media(max-width: 576px) {
+    .g_id_signin>div>div {
+        /* width: 150% !important; */
+        width: 225px;
+    }
+
+    .submit-btn-sec {
+        margin-top: 30px;
+    }
+
+    .create-account-input-form {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .or-txt-section,
+    .form-section {
+        padding: 0 15px;
+    }
+
+    .create-account-pg {
+        padding-bottom: 60px;
+    }
 }
