@@ -4,13 +4,13 @@ export function createArr(length = defaultLengthCreateArrFn) {
     return Array.from({ length });
 }
 
-export function getRandomNum(maxIndex = 0) {
-    if (maxIndex < 0) {
-        console.error('"maxIndex" must be greater than  0.')
+export function getRandomNum(num = 0) {
+    if (num < 0) {
+        console.error('"num" must be greater than  0.')
         return;
     }
 
-    return Math.floor(Math.random() * maxIndex)
+    return Math.floor(Math.random() * num)
 }
 
 

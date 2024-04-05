@@ -49,7 +49,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         console.log('uncoloredDots: ', uncoloredDots)
         console.log('dots, hey there! ', dots)
 
-        let randomIndex = getRandomNum(dots.length + 1);
+        let randomIndex = getRandomNum(dots.length);
         console.log('randomIndex: ', randomIndex)
         let selectedDot = dots[randomIndex]
 
@@ -219,7 +219,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         }
 
         const uncoloredDots = dotBtns.filter(dot => dot.style.backgroundColor === '');
-        const nextDotToClick = uncoloredDots[getRandomNum(uncoloredDots.length + 1)];
+        const nextDotToClick = uncoloredDots[getRandomNum(uncoloredDots.length)];
 
         console.log('nextDotToClick: ', nextDotToClick)
 
@@ -326,18 +326,18 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         colorAllDots(true)
         randomlyColorDot();
     }, 1000)
-    displayBackdrop();
-    renderModalParentElement();
-    displayResultsModal(
-        [].filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
-        [],
-        () => {
-            resetState();
-            createBtnCells();
-            randomlyColorDot();
-        },
-        handleShowMissedDotBtnClick,
-        '.modal-relative-container'
-    );
+    // displayBackdrop();
+    // renderModalParentElement();
+    // displayResultsModal(
+    //     [].filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
+    //     [],
+    //     () => {
+    //         resetState();
+    //         createBtnCells();
+    //         randomlyColorDot();
+    //     },
+    //     handleShowMissedDotBtnClick,
+    //     '.modal-relative-container'
+    // );
 })();
 
