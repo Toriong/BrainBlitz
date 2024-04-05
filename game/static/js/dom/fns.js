@@ -1,4 +1,5 @@
 import { Element } from "./classes.js"
+import { MAIN_DIV_ID } from "./vars.js";
 
 export function addStyles(element, stylesArr) {
     stylesArr.forEach(([propertyName, propertyVal]) => {
@@ -37,7 +38,7 @@ export function addEventListeners(element, eventListeners) {
     })
 }
 
-export function displayBackdrop(handleOnClick = () => { }, cssSelector = '#main') {
+export function displayBackdrop(handleOnClick = () => { }, cssSelector = MAIN_DIV_ID) {
     if (!handleOnClick) {
         console.error('"handleOnClick" must be a function.')
         return;
@@ -62,6 +63,7 @@ export function displayModal(
     styles = []
 ) {
     const parentElement = $(cssSelector)
+    console.log('parentElement of modal: ', parentElement)
     const { element } = new Element(
         htmlElementStr,
         styles,

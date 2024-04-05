@@ -1,4 +1,4 @@
-import { Button } from "./dom/classes.js";
+import { Button, Element } from "./dom/classes.js";
 import {
     addCssClasses,
     addStyles,
@@ -6,7 +6,7 @@ import {
     displayBackdrop,
     displayModal,
     removeCssClasses,
-    removeElement
+    removeElement,
 } from "./dom/fns.js";
 import {
     BACKDROP_CLASSNAME,
@@ -19,6 +19,8 @@ import {
 } from "./modals/resultsModal.js";
 import { createArr, getRandomNum } from "./utils/utils.js";
 
+const MAIN_DIV_ID = '#main';
+
 (() => {
     const TOTAL_CELLS = 100;
     const BORDER_PROPERTY_TUPLE_UNCOLORED_DOT = ['border', '1.6px solid grey']
@@ -28,6 +30,27 @@ import { createArr, getRandomNum } from "./utils/utils.js";
     let state = {
         dots: [],
         missedDotBtnId: null
+    }
+
+    function renderModalParentElement(parentCssSelector = MAIN_DIV_ID) {
+        const parentElement = $(parentCssSelector)
+        const contentElementHeight = $('#content')[0].offsetHeight
+
+        const { element } = new Element(
+            '<div></div>',
+            [['height', `${contentElementHeight}px`]],
+            [['click', () => { }]],
+            'position-absolute opacity-0 vw-100 bg-danger modal-parent-container'
+        );
+        const { element: relativeModalContainer } = new Element(
+            '<div></div>',
+            [],
+            [['click', () => { }]],
+            'position-relative w-100 h-100 modal-relative-container'
+        );
+
+        parentElement.prepend(element)
+        $('.modal-parent-container').append(relativeModalContainer)
     }
 
     function resetState() {
@@ -168,8 +191,6 @@ import { createArr, getRandomNum } from "./utils/utils.js";
                     <span>WRONG</span>
                 </div>`
             );
-
-            console.log('state.dots, hey there! ', state.dots)
 
             dotBtns.forEach(dot => {
                 const dotBtnObj = state.dots.find(dotTrackerObj => dotTrackerObj.id == dot.id)
@@ -325,6 +346,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         randomlyColorDot();
     }, 1000)
     displayBackdrop()
+    renderModalParentElement()
     displayResultsModal(
         [].filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
         [],

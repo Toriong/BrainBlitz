@@ -16,6 +16,16 @@ button {
     display: block
 }
 
+.vw-100 {
+    width: 100vw;
+}
+
+
+
+.opacity-0 {
+    opacity: 0;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -42,6 +52,7 @@ body {
 
 #content {
     height: 83vh;
+    max-height: 1000px;
 }
 
 .d-flex {
@@ -93,6 +104,10 @@ body {
 /* borders: */
 .border-red {
     border: solid 1px red;
+}
+
+.bg-danger {
+    background: red !important;
 }
 
 .bg-succes {
