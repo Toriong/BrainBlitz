@@ -98,7 +98,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
             }
             const stateDotsCopy = structuredClone(state.dots);
             displayResultsModal(
-                stateDotsCopy.filter(dot => dot.wasClickedCorrectly).length,
+                stateDotsCopy.filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
                 stateDotsCopy,
                 () => {
                     resetState();
@@ -111,7 +111,6 @@ import { createArr, getRandomNum } from "./utils/utils.js";
     }
 
     function handleShowMissedDotBtnClick() {
-        console.log('hey there!')
         removeCssClasses(resultModalClassName, FADE_IN_RESULTS_MODAL_CLASS_NAME)
         addCssClasses(resultModalClassName, 'fade-out-results-modal')
 
@@ -131,6 +130,25 @@ import { createArr, getRandomNum } from "./utils/utils.js";
                 }, 500)
             }, 300)
         }, 300)
+    }
+
+    function handleColorEachDot(willMakeDotBlank, dot) {
+        if (willMakeDotBlank) {
+            colorElement(dot, '', BORDER_PROPERTY_TUPLE_UNCOLORED_DOT)
+            return;
+        }
+
+        const { color } = state.dots.find(dotObj => dotObj.id == dot.id);
+        colorElement(dot, color, ['border', 'white']);
+
+    }
+
+    function colorAllDots(willMakeDotBlank) {
+        const dotBtns = Array.from($('.dot-btn'));
+
+        dotBtns.forEach(dot => {
+            handleColorEachDot(willMakeDotBlank, dot)
+        });
     }
 
 
@@ -164,6 +182,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
                     addCssClasses('.backdrop', 'fade-out-backdrop')
                     setTimeout(() => {
                         removeElement('.wrong-modal')
+                        // color the dots here
                         dotBtns.forEach(dot => {
                             colorElement(dot, '', BORDER_PROPERTY_TUPLE_UNCOLORED_DOT)
                         });
@@ -198,13 +217,6 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         }
 
         const uncoloredDots = dotBtns.filter(dot => dot.style.backgroundColor === '');
-
-
-        const randomIndex = getRandomNum(uncoloredDots.length + 1);
-
-        console.log('randomIndex: ', randomIndex)
-        console.log('uncoloredDots: ', uncoloredDots);
-
         const nextDotToClick = uncoloredDots[getRandomNum(uncoloredDots.length + 1)];
 
         console.log('nextDotToClick: ', nextDotToClick)
@@ -226,7 +238,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
             colorElement(dotBtn, color)
         }
 
-        // update the state that tracks which dots were clicked and whic dot is to be clicked next
+        // update the state that tracks which dots were clicked and which dot is to be clicked next
         state.dots = state.dots.map(dot => {
             if (dot.id == index) {
                 return {
@@ -303,7 +315,25 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         })
     }
 
+    //GOAL: get the path from the url
+    // if the path is 'how-to-play', then display the ui to the user teaching them how 
+    // -to play the game
     createBtnCells();
-    randomlyColorDot()
+    colorAllDots();
+    setTimeout(() => {
+        colorAllDots(true)
+        randomlyColorDot();
+    }, 1000)
+    displayBackdrop()
+    displayResultsModal(
+        [].filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
+        [],
+        () => {
+            resetState();
+            createBtnCells();
+            randomlyColorDot();
+        },
+        handleShowMissedDotBtnClick
+    );
 })();
 

@@ -235,3 +235,13 @@
     color: var(--wrong-txt-color);
     font-size: 21px;
 }
+
+.results-modal {
+    height: 80vh !important;
+}
+
+@media(max-width: 376px) {
+    .results-modal {
+        height: 80vh !important;
+    }
+}

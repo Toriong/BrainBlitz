@@ -1,5 +1,8 @@
+
+
 import { Button, Cookies } from "./dom/classes.js";
 import { addCssClasses, removeElement } from "./dom/fns.js";
+
 
 (() => {
     const LOADING_TXT_DIV_ID = '#loading-main-menu-pg'
@@ -14,7 +17,7 @@ import { addCssClasses, removeElement } from "./dom/fns.js";
     }
 
     function handleOnLeaderBoardBtnClick() {
-
+        console.log('hello there!')
     }
 
     function handleHowToPlayBtnClick() {
@@ -24,14 +27,6 @@ import { addCssClasses, removeElement } from "./dom/fns.js";
     function handlePlayBtnClick() {
         console.log('was clicked')
         window.location.href = '/game'
-    }
-
-    function applyEventListeners() {
-        console.log('hey there meng!')
-
-        $('#play-btn').on('click', () => {
-            console.log('hey there')
-        })
     }
 
     function handleOnPgDisplay() {
@@ -47,7 +42,6 @@ import { addCssClasses, removeElement } from "./dom/fns.js";
             handleBtnClickFn = handleLoginBtnClick
         }
 
-        console.log('yo there meng why are you not executing')
         const { button: userBtn } = new Button(btnTxt, handleBtnClickFn, 'fade-element-in')
 
         setTimeout(() => {
@@ -71,15 +65,10 @@ import { addCssClasses, removeElement } from "./dom/fns.js";
 
                 setTimeout(() => {
                     btnsSec.append(userBtn)
-
-                    $('#play-btn').on('click', handlePlayBtnClick)
-                    $('#how-to-play').on('click', handleHowToPlayBtnClick)
-                    $('#leaderboard-btn').on('click', handleOnLeaderBoardBtnClick)
                 }, 200)
             }, 400)
         }, 400)
     }
 
     handleOnPgDisplay()
-    applyEventListeners()
 })();

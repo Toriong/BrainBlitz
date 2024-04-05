@@ -53,5 +53,23 @@
 </script>
 <script type="module" src="{% static 'js/mainMenu.js' %}">
 </script>
+<script type="text/javascript">
+    (() => {
+        const [howToPlayBtn, leaderboardBtn] = Array.from(document.querySelectorAll('#how-to-play, #leaderboard-btn'))
+
+        function handleHowToPlayBtn() {
+            // take the user to game screen
+            window.location.href = '/how-to-play'
+        }
+
+        function handleLeaderboardBtnClick() {
+
+        }
+
+        howToPlayBtn.addEventListener('click', handleHowToPlayBtn)
+
+        leaderboardBtn.addEventListener('click', handleLeaderboardBtnClick)
+    })()
+</script>
 
 </html>
