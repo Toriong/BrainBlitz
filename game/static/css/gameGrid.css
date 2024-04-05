@@ -3,8 +3,8 @@
 /* create a media query for how many dots to repeat */
 .game-grid {
     display: grid;
-    /* height: 80vh;
-    width: 70vw; */
+    height: 80vh;
+    width: 60vw;
     grid-template-columns: repeat(10, 1fr);
     padding-top: 20px;
     max-height: 800px;
@@ -101,7 +101,3 @@
         width: 95vw !important;
     }
 }
-
-
-
-/* WIDDEN THE GRID WHEN THE USER IS ON A GALAXY FOLD */

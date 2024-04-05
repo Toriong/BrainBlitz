@@ -6,7 +6,7 @@ import {
     removeCssClasses,
     removeElement
 } from "../dom/fns.js";
-import { GAME_GRID_CLASS_NAME } from "../dom/vars.js";
+import { GAME_GRID_CLASS_NAME, MAIN_DIV_ID } from "../dom/vars.js";
 import { animateModal } from "./generalFns.js";
 
 const PLAY_AGAIN_BTN_ID = 'play-again-btn'
@@ -58,4 +58,46 @@ function attachClickHandlersToBtns(dots, addDotBtns, handleViewDotToClickBtnClic
     if (missedDotBtn) {
         addEventListeners(missedDotBtn, [['click', handleViewDotToClickBtnClick]])
     }
+}
+
+export function displayResultsModal(
+    correctNum = 0,
+    dots = [],
+    addDotBtns = () => { },
+    handleViewDotToClickBtnClick = () => { },
+    parentCssSelectorForModal = MAIN_DIV_ID,
+) {
+    const resultsSecHtmlStr = `
+        <section>
+            <button id=${MISSED_DOT_BTN_ID}>
+                <span>View Missed Dot</span>
+            </button>
+        </section>
+    `
+    displayModal(
+        `${RESULT_MODAL_CLASS_NAME} rounded modal d-flex justify-content-center align-items-center fade-in-results-modal`,
+        `<div>
+            <h1>Results</h1>
+            <section>
+                <span id='correct-num-txt'>
+                    Correct: <em id='correctNum'>${correctNum}</em>
+                </span>
+            </section>
+            <section class='results-modal-button-sec'>
+                <section>
+                    <button id=${MAIN_MENU_BTN_ID}>
+                        <span>MAIN MENU</span>
+                    </button>
+                    <button id=${PLAY_AGAIN_BTN_ID}>
+                        <span>PLAY AGAIN!</span>
+                    </button>
+                </section>
+                ${correctNum === 45 ? '' : resultsSecHtmlStr}
+            </section>
+        </div>
+        `,
+        parentCssSelectorForModal
+    );
+
+    attachClickHandlersToBtns(dots, addDotBtns, handleViewDotToClickBtnClick);
 }

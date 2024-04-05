@@ -13,6 +13,7 @@ import {
     lightColors,
     MAIN_DIV_ID
 } from "./dom/vars.js";
+import { renderModalParentElement } from "./modals/generalFns.js";
 import {
     FADE_IN_RESULTS_MODAL_CLASS_NAME,
     RESULT_MODAL_CLASS_NAME,
@@ -30,27 +31,6 @@ import { createArr, getRandomNum } from "./utils/utils.js";
     let state = {
         dots: [],
         missedDotBtnId: null
-    }
-
-    function renderModalParentElement(parentCssSelector = MAIN_DIV_ID) {
-        const parentElement = $(parentCssSelector)
-        const contentElementHeight = $('#content')[0].offsetHeight
-
-        const { element } = new Element(
-            '<div></div>',
-            [['height', `${contentElementHeight}px`]],
-            [['click', () => { }]],
-            'position-absolute opacity-0 vw-100 bg-danger modal-parent-container'
-        );
-        const { element: relativeModalContainer } = new Element(
-            '<div></div>',
-            [],
-            [['click', () => { }]],
-            'position-relative w-100 h-100 modal-relative-container'
-        );
-
-        parentElement.prepend(element)
-        $('.modal-parent-container').append(relativeModalContainer)
     }
 
     function resetState() {
@@ -73,6 +53,7 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         console.log('randomIndex: ', randomIndex)
         let selectedDot = dots[randomIndex]
 
+        console.log('selectedDot: ', selectedDot)
         // bug OCCURRING HERE, WHEN CREATING THE GAME SCREEN FOR THE FIRST TIME
 
         if (selectedDot.style.backgroundColor !== "") {
@@ -345,8 +326,8 @@ import { createArr, getRandomNum } from "./utils/utils.js";
         colorAllDots(true)
         randomlyColorDot();
     }, 1000)
-    displayBackdrop()
-    renderModalParentElement()
+    displayBackdrop();
+    renderModalParentElement();
     displayResultsModal(
         [].filter(dot => dot.wasClickedCorrectly)?.length ?? 0,
         [],
@@ -355,7 +336,8 @@ import { createArr, getRandomNum } from "./utils/utils.js";
             createBtnCells();
             randomlyColorDot();
         },
-        handleShowMissedDotBtnClick
+        handleShowMissedDotBtnClick,
+        '.modal-relative-container'
     );
 })();
 
