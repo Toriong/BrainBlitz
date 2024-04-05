@@ -19,7 +19,6 @@
     <div id="main" class="position-relative" style="height: 100vh;">
         {{navbar | safe}}
         <div id="content" class="create-account-pg" style="padding-top: 10px">
-            <!-- <h1>Create An Account</h1> -->
             <!-- make the data-login-uri into python context prop -->
             <section class="form-section">
                 <form id="create-account-form">
@@ -45,6 +44,7 @@
                         <div class="d-flex flex-column">
                             <label for="country-input">COUNTRY</label>
                             <input id="country-input" placeholder="Country Of Origin" />
+                            <div class="position-relative w-100 modal-countries-container"></div>
                             <ul class="error-list" />
                         </div>
                         <div class="d-flex flex-column">

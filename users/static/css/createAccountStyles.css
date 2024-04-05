@@ -20,6 +20,15 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
+.form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-section>form {
+    width: 85%;
+}
 
 .or-txt-section,
 .form-section {
@@ -95,7 +104,11 @@
 }
 
 .submit-btn-sec {
-    margin-top: 25px;
+    margin-top: 20px;
+}
+
+.create-account-pg {
+    padding-bottom: 45px;
 }
 
 @media(max-width: 576px) {
