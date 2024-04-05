@@ -16,6 +16,14 @@ button {
     display: block
 }
 
+.d-grid {
+    display: grid;
+}
+
+.d-none {
+    display: none;
+}
+
 .vw-100 {
     width: 100vw;
 }
@@ -114,6 +122,17 @@ body {
     background-color: #28A745;
 }
 
+.border-red {
+    border: solid 1px red;
+}
+
+input:focus {
+    outline: none;
+}
+
+.flex-column {
+    flex-direction: column;
+}
 
 @media(min-width: 992px) {
     .d-md-flex {

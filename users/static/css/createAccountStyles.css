@@ -1,0 +1,92 @@
+:root {
+    --font-sz-main-header: 45px;
+    --form-input-txt-font-sz: 18px;
+}
+
+.create-account-pg h1 {
+    font-size: var(--font-sz-main-header);
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.g_id_signin>div>div {
+    /* width: 150% !important; */
+    width: 350px;
+    border-radius: 2.5rem;
+}
+
+.create-account-input-form {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-section {
+    padding: 0px 40px;
+}
+
+#create-account-form label {
+    font-weight: bold;
+}
+
+#create-account-form label,
+#create-account-form input {
+    font-size: var(--form-input-txt-font-sz);
+}
+
+.create-account-input-form div {
+    margin-top: 10px;
+}
+
+.create-account-input-form ul {
+    margin: 0px;
+    height: 25px;
+    display: inline;
+    padding: 0px 10px;
+    width: 80%;
+}
+
+.create-account-input-form li {
+    display: inline;
+}
+
+.create-account-input-form input {
+    margin-top: 7px;
+    border-radius: .7rem;
+    padding: 8px;
+    width: 80%;
+    user-select: none !important;
+    border: solid .5px grey;
+    /* box-shadow: 5px 5px 10px; */
+}
+
+#create-account-form button {
+    padding: 20px 40px;
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 36px;
+    border-radius: .5rem;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: #262626;
+        color: white;
+        transition: all .1s ease-in-out;
+    }
+}
+
+
+
+.create-account-input-form li::before {
+    content: "\2022";
+    margin-right: 5px;
+    color: #000;
+}

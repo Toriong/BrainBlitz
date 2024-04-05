@@ -9,16 +9,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id"
         content="650291073552-0vsvpnts39gtn2uit45gt7jkaf91d3md.apps.googleusercontent.com">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/createAccountStyles.css' %}">
+
+
 </head>
 
 <body>
-    <h1>Create An Account</h1>
-    <div id="g_id_onload" data-client_id="650291073552-0vsvpnts39gtn2uit45gt7jkaf91d3md.apps.googleusercontent.com"
-        data-context="signup" data-ux_mode="redirect"
-        data-login_uri="http://localhost:8000/user/google-auth-cred-receiver" data-auto_prompt="false">
-    </div>
-    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signup_with"
-        data-size="large" data-logo_alignment="left">
+    <div id="main" class="position-relative" style="height: 100vh; overflow: hidden;">
+        {{navbar | safe}}
+        <div id="content" class="create-account-pg" style="padding-top: 10px">
+            <!-- <h1>Create An Account</h1> -->
+            <!-- make the data-login-uri into python context prop -->
+            <section class="form-section">
+                <form id="create-account-form">
+                    <section class="w-100 create-account-input-form d-grid">
+                        <div class="d-flex flex-column">
+                            <label for="username-input">USERNAME</label>
+                            <input id="username-input" placeholder="Your username" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <input disabled name="input-placeholder" class="opacity-0" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="first-name-input">FIRST NAME</label>
+                            <input id="first-name-input" placeholder="first_name" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="last-name-input">LAST NAME</label>
+                            <input id="last-name-input" placeholder="last_name" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="country-input">COUNTRY</label>
+                            <input id="country-input" placeholder="Select Country Of Origin" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="email-input">EMAIL</label>
+                            <input id="email-input" placeholder="example_email" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="password-input">PASSWORD</label>
+                            <input type="password" id="password-input" placeholder="Password" />
+                            <ul class="error-list" />
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="confirm-password-input">CONFIRM PASSWORD</label>
+                            <input type="password" id="confirm-password-input" placeholder="Confirm Password" />
+                            <ul class="error-list" />
+                        </div>
+                    </section>
+                    <section class="d-flex justify-content-center align-items-center w-100">
+                        <button>SUBMIT</button>
+                    </section>
+                </form>
+            </section>
+            <section>
+                <div id="g_id_onload"
+                    data-client_id="650291073552-0vsvpnts39gtn2uit45gt7jkaf91d3md.apps.googleusercontent.com"
+                    data-context="signup" data-ux_mode="redirect"
+                    data-login_uri="http://localhost:8000/user/google-auth-cred-receiver" data-auto_prompt="false">
+                </div>
+                <div class="w-100 d-flex justify-content-center align-items-center">
+                    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+                        data-text="signup_with" data-size="large" data-logo_alignment="left">
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </body>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">

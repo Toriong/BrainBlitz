@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.views.decorators.csrf import csrf_exempt 
+from utils.dom_fns.dom_fns import get_navbar
 
 
 # the landing page will have sign in modal:
@@ -14,5 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt 
 def render_create_account_pg(request:HttpRequest):
-    return render(request, 'user/createAccount.html')
+    navbar = get_navbar("main_menu")
+
+    return render(request, 'user/createAccount.html', { 'navbar': navbar  })
     
