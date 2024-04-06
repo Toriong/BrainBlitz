@@ -13,6 +13,7 @@
 .g_id_signin>div>div {
     /* width: 150% !important; */
     width: 350px;
+    transform: translateY(50%);
     border-radius: 2.5rem;
 }
 
@@ -167,7 +168,7 @@
     background-color: white;
     z-index: 10;
     border-radius: .5rem;
-    transform: translate(2%, -7%);
+    transform: translate(2%, -2%);
     box-shadow: 10px 5px 5px grey;
     padding-top: 10px;
 }

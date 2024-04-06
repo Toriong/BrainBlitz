@@ -44,9 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    # pip installs:
-    'livereload',
-    
     # apps:
     'game',
     'users',
