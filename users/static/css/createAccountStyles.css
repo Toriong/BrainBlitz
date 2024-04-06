@@ -1,5 +1,5 @@
 :root {
-    --font-sz-main-header: 45px;
+    --font-sz-main-header: 40px;
     --form-input-txt-font-sz: 18px;
 }
 
@@ -44,10 +44,6 @@
     font-size: var(--form-input-txt-font-sz);
 }
 
-.create-account-input-form div {
-    margin-top: 10px;
-}
-
 .create-account-input-form ul {
     margin: 0px;
     height: 25px;
@@ -56,8 +52,38 @@
     width: 80%;
 }
 
-.create-account-input-form li {
-    display: inline;
+.country-option {
+    display: inline-flex;
+    height: 80px;
+    width: 98%;
+    list-style-type: none !important;
+    /* padding: 0px 10px; */
+}
+
+.country-option img {
+    width: 70px;
+    height: 70px;
+}
+
+.country-option:not(:last-of-type) {
+    border-bottom: solid .5px grey;
+}
+
+.country-option:not(:first-of-type) {
+    margin-top: 8px;
+}
+
+.country-option>div:first-of-type {
+    width: 75%;
+}
+
+.country-option>div:last-of-type {
+    width: 25%;
+}
+
+.country-option span {
+    text-transform: capitalize;
+    margin-left: 10px;
 }
 
 .create-account-input-form input {
@@ -97,18 +123,18 @@
 
 
 
-.create-account-input-form li::before {
+/* .create-account-input-form li::before {
     content: "\2022";
     margin-right: 5px;
-    color: #000;
-}
+    color: #000; */
+/* } */
 
 .submit-btn-sec {
     margin-top: 20px;
 }
 
 .create-account-pg {
-    padding-bottom: 45px;
+    padding-bottom: 75px;
 }
 
 @media(max-width: 576px) {
@@ -133,4 +159,23 @@
     .create-account-pg {
         padding-bottom: 60px;
     }
+}
+
+.modal-countries-result {
+    height: 250px;
+    border: solid 1px grey;
+    background-color: white;
+    z-index: 10;
+    border-radius: .5rem;
+    transform: translate(2%, -7%);
+    box-shadow: 10px 5px 5px grey;
+    padding-top: 10px;
+}
+
+#countries-list {
+    width: 95%;
+    height: 240px;
+    display: inline-block;
+    overflow-y: scroll;
+    list-style-type: none;
 }

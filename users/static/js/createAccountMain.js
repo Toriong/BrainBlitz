@@ -1,5 +1,4 @@
-import { Element } from '../../../game/static/js/dom/classes.js'
-
+import { Element } from "./dom/classes.js";
 
 (() => {
     const state = {
@@ -20,19 +19,61 @@ import { Element } from '../../../game/static/js/dom/classes.js'
         `<div></div>`,
         [],
         [],
-        'modal-countries-result'
+        'modal-countries-result position-absolute'
     )
 
     function handleEventOccurrence(event, val) {
         event.target.style.boxShadow = val
     }
 
-    function handleCountryInputOnchange(event) {
+    let appendSearchCountriesResultTimeout = null;
+
+    const handleCountryInputOnchange = event => {
+        clearTimeout(appendSearchCountriesResultTimeout)
         state.countriesToShow = state.countries.filter(country => {
             return country.name.includes(event.target.value.toLowerCase())
         })
 
-        console.log('state.countriesToShow: ', state.countriesToShow)
+        appendSearchCountriesResultTimeout = setTimeout(() => {
+            const modalResultsOnDom = $(`.modal-countries-result`)
+
+            if (state.countriesToShow.length && !modalResultsOnDom.length) {
+                console.log('hey there!')
+                const modalWidth = event.target.offsetWidth - (event.target.offsetWidth * .05)
+                const list = $(`
+                    <ul id="countries-list">
+                    </ul>
+                `)
+                const modal = $(`
+                    <div class='modal-countries-result position-absolute'>        
+                    </div>
+                `)
+
+                const userInput = event.target.value.toLowerCase()
+
+                for (const country of state.countriesToShow) {
+                    if (country.name.includes(userInput)) {
+                        list.append($(`
+                            <li class='country-option'>
+                                <div class='d-flex align-items-center'>
+                                    <span>
+                                        ${country.name}
+                                    </span>
+                                </div>
+                                <div class='d-flex justify-content-center align-items-center'>
+                                    <img src=${country.image} alt=${`${country.name}'s image`} />
+                                </div>
+                            </li>
+                        `))
+                    }
+                };
+
+                modal.css({ width: `${modalWidth}px` })
+                modal.append(list)
+
+                $('.modal-countries-container').append(modal)
+            }
+        }, 400);
     }
 
     function applyEventListnersToInputs() {
@@ -41,6 +82,8 @@ import { Element } from '../../../game/static/js/dom/classes.js'
         inputs.forEach(input => {
             $(input).on('focus', event => handleEventOccurrence(event, ACTIVE_INPUT_BOX_SHADOW))
             $(input).on('blur', event => handleEventOccurrence(event, ""))
+
+            console.log('input.id: ', input.id)
 
             if (input.id === "country-input") {
                 console.log('hey there meng')
@@ -68,6 +111,7 @@ import { Element } from '../../../game/static/js/dom/classes.js'
 
 
     function handleOnPgDisplay() {
+        console.log('yo there!')
         applyEventListnersToInputs()
         getAllCountries()
     }

@@ -38,6 +38,14 @@ button {
     width: 100%;
 }
 
+.w-75 {
+    width: 75%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
 .h-100 {
     height: 100%;
 }
@@ -130,6 +138,10 @@ body {
 
 input:focus {
     outline: none;
+}
+
+ul {
+    list-style-type: none !important;
 }
 
 .flex-column {
