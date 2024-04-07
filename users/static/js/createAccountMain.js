@@ -7,7 +7,7 @@ import { Element } from "./dom/classes.js";
             firstName: "",
             lastName: "",
             username: "",
-            country: "",
+            country: null,
             email: "",
             password: ""
         },
@@ -15,12 +15,17 @@ import { Element } from "./dom/classes.js";
     }
     const ACTIVE_INPUT_BOX_SHADOW = '10px 5px 5px grey';
     const INPUT_PLACEHOLER_NAME = 'input-placeholder'
-    const ModalCountriesElement = new Element(
-        `<div></div>`,
-        [],
-        [],
-        'modal-countries-result position-absolute'
-    )
+    const MODAL_COUNTRIES_NAME = 'modal-countries-result'
+
+    function handleCountryOptClick(country) {
+        state.form.country = country.name;
+
+        $(`.${MODAL_COUNTRIES_NAME}`).remove();
+
+        $('#country-img-container').append(`<img src=${country.image} alt=${`${country.name}'s image`} />`);
+
+        state.countriesToShow = []
+    }
 
     function handleEventOccurrence(event, val) {
         event.target.style.boxShadow = val
@@ -39,13 +44,14 @@ import { Element } from "./dom/classes.js";
 
             if (state.countriesToShow.length && !modalResultsOnDom.length) {
                 console.log('hey there!')
-                const modalWidth = event.target.offsetWidth - (event.target.offsetWidth * .05)
+                const countryInputContainerWidth = $(`#country-input-sec`).width()
+                const modalWidth = countryInputContainerWidth - (countryInputContainerWidth * .05)
                 const list = $(`
                     <ul id="countries-list">
                     </ul>
                 `)
                 const modal = $(`
-                    <div class='modal-countries-result position-absolute'>        
+                    <div class='${MODAL_COUNTRIES_NAME} position-absolute'>        
                     </div>
                 `)
 
@@ -53,7 +59,7 @@ import { Element } from "./dom/classes.js";
 
                 for (const country of state.countriesToShow) {
                     if (country.name.includes(userInput)) {
-                        list.append($(`
+                        const li = $(`
                             <li class='country-option'>
                                 <div class='d-flex align-items-center'>
                                     <span>
@@ -64,7 +70,11 @@ import { Element } from "./dom/classes.js";
                                     <img src=${country.image} alt=${`${country.name}'s image`} />
                                 </div>
                             </li>
-                        `))
+                        `)
+
+                        li.on('click', () => handleCountryOptClick(country))
+
+                        list.append(li)
                     }
                 };
 
@@ -73,6 +83,8 @@ import { Element } from "./dom/classes.js";
 
                 $('.modal-countries-container').append(modal)
             }
+
+            // if there are results already in the modal, then delete the results, and update 
         }, 400);
     }
 

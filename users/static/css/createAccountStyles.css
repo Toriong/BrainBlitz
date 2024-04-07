@@ -36,6 +36,20 @@
     padding: 0px 40px;
 }
 
+@media(min-width: 577px) and (max-width: 991px) {
+
+    .or-txt-section,
+    .form-section {
+        padding: 0px 0px;
+    }
+
+    .form-section {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+    }
+}
+
 #create-account-form label {
     font-weight: bold;
 }
@@ -61,6 +75,14 @@
     /* padding: 0px 10px; */
 }
 
+#country-img-container img {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#country-img-container img,
 .country-option img {
     width: 70px;
     height: 70px;
@@ -94,7 +116,29 @@
     width: 80%;
     user-select: none !important;
     border: solid .5px grey;
-    /* box-shadow: 5px 5px 10px; */
+}
+
+#country-input-sec {
+    width: 80%;
+}
+
+
+#country-input-sec input {
+    width: 60%;
+}
+
+#country-input-sec>div>div {
+    width: 20%;
+}
+
+@media(max-width: 991px) {
+    #country-input-sec input {
+        width: 50%;
+    }
+
+    #country-input-sec>div>div {
+        width: 30%;
+    }
 }
 
 #create-account-form button {
