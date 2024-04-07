@@ -59,12 +59,19 @@
     font-size: var(--form-input-txt-font-sz);
 }
 
+.error-list li {
+    color: red;
+    font-size: 14px;
+    display: inline-block;
+}
+
 .create-account-input-form ul {
     margin: 0px;
     height: 25px;
     display: inline;
     padding: 0px 10px;
     width: 80%;
+    padding-top: 3px;
 }
 
 .country-option {
@@ -82,7 +89,6 @@
     transform: translate(-50%, -50%);
 }
 
-#country-img-container img,
 .country-option img {
     width: 70px;
     height: 70px;
@@ -120,12 +126,6 @@
 
 #country-input-sec input {
     width: 80%;
-}
-
-@media(max-width: 991px) {
-    #country-input-sec input {
-        width: 50%;
-    }
 }
 
 #create-account-form button {
@@ -169,6 +169,13 @@
 
 .create-account-pg {
     padding-bottom: 75px;
+}
+
+@media(max-width: 576px) {
+    .country-option img {
+        width: 55px;
+        height: 55px;
+    }
 }
 
 @media(max-width: 576px) {

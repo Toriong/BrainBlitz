@@ -25,42 +25,42 @@
                     <section class="w-100 create-account-input-form d-grid">
                         <div class="d-flex flex-column">
                             <label for="username-input">USERNAME</label>
-                            <input id="username-input" placeholder="Your username" />
-                            <ul class="error-list"></ul>
+                            <input name="username" id="username-input" placeholder="Your username" />
+                            <ul id="error-list-username" class="error-list"></ul>
                         </div>
                         <div class="d-none d-sm-block">
                             <input disabled name="input-placeholder" class="opacity-0" />
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="first-name-input">FIRST NAME</label>
-                            <input id="first-name-input" placeholder="first_name" />
-                            <ul class="error-list"></ul>
+                            <label for="firstName">FIRST NAME</label>
+                            <input name="firstName" id="firstName" placeholder="first_name" />
+                            <ul id="error-list-firstName" class="error-list"></ul>
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="last-name-input">LAST NAME</label>
-                            <input id="last-name-input" placeholder="last_name" />
-                            <ul class="error-list"></ul>
+                            <label for="lastName">LAST NAME</label>
+                            <input name="lastName" id="lastName" placeholder="last_name" />
+                            <ul id="error-list-lastName" class="error-list"></ul>
                         </div>
                         <div id="country-input-sec" class="d-flex flex-column">
-                            <label for="country-input">COUNTRY</label>
-                            <input id="country-input" placeholder="Country Of Origin" />
+                            <label for="country">COUNTRY</label>
+                            <input autocomplete="off" id="country" placeholder="Country Of Origin" />
                             <div class="position-relative w-100 modal-countries-container"></div>
-                            <ul class="error-list"></ul>
+                            <ul id="error-list-country" class="error-list"></ul>
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="email-input">EMAIL</label>
-                            <input id="email-input" placeholder="example_email" />
-                            <ul class="error-list"></ul>
+                            <label for="email">EMAIL</label>
+                            <input name="email" id="email" placeholder="example_email" />
+                            <ul id="error-list-email" class="error-list"></ul>
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="password-input">PASSWORD</label>
-                            <input type="password" id="password-input" placeholder="Password" />
-                            <ul class="error-list"></ul>
+                            <label for="password">PASSWORD</label>
+                            <input name="password" type="password" id="password" placeholder="Password" />
+                            <ul id="error-list-password" class="error-list"></ul>
                         </div>
                         <div class="d-flex flex-column">
-                            <label for="confirm-password-input">CONFIRM PASSWORD</label>
-                            <input type="password" id="confirm-password-input" placeholder="Confirm Password" />
-                            <ul class="error-list"></ul>
+                            <label for="confirmPassword">CONFIRM PASSWORD</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+                            <ul id="error-list-confirmPassword" class="error-list"></ul>
                         </div>
                     </section>
                     <section class="submit-btn-sec d-flex justify-content-center align-items-center w-100">

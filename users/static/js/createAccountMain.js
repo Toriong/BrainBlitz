@@ -9,7 +9,8 @@
             username: "",
             country: null,
             email: "",
-            password: ""
+            password: "",
+            confirmPassword: ""
         },
         countriesToShow: []
     }
@@ -68,7 +69,12 @@
             const modalResultsOnDom = $(`.modal-countries-result`)
 
             if (state.countriesToShow.length && !modalResultsOnDom.length) {
-                const modalWidth = event.target.offsetWidth - (event.target.offsetWidth * .05)
+                const viewportWidth = $(window).width()
+
+                console.log("viewportWidth: ", viewportWidth)
+                console.log('event.target.offsetWidth: ', event.target.offsetWidth)
+
+                const modalWidth = (viewportWidth <= 576) ? (event.target.offsetWidth + 40) : (event.target.offsetWidth - (event.target.offsetWidth * .05))
                 const list = $(`
                     <ul id="countries-list">
                     </ul>
@@ -111,25 +117,61 @@
         }, 400);
     }
 
+    function handleInputOnChange(event) {
+        // the email must be unique as well
+        // can't be the country, confirm password input field
+
+        // if username, firstName, lastName === must be greater than 1 character
+        const fieldsThatMustBeGreaterThan1Char = ['firstName', 'lastName', 'username']
+        const { name, value } = event.target;
+        const form = state.form;
+        form[name] = value;
+
+        if (fieldsThatMustBeGreaterThan1Char.includes(name) && !(value.length > 1)) {
+            $(`#error-list-${name}`).append(`
+                <li>
+                    *Must be greater than 1 character.
+                </li>
+            `)
+        }
+
+        if (name === 'username') {
+            // check if the username is unique
+        }
+
+    }
+
+    function handleConfirmPasswordOnChange(event) {
+        if (state.form.password !== state.form.confirmPassword) {
+
+        }
+    }
+
     function applyEventListnersToInputs() {
         const inputs = Array.from($('input')).filter(input => input.name !== INPUT_PLACEHOLER_NAME)
 
-        inputs.forEach(input => {
+        for (const input of inputs) {
             $(input).on('focus', event => handleOnFocus(event, ACTIVE_INPUT_BOX_SHADOW))
             $(input).on('blur', event => handleOnBlur(event))
 
-            console.log('input.id: ', input.id)
-
             if (input.id === "country-input") {
-                console.log('hey there meng')
                 $(input).on('input', handleCountryInputOnchange)
+                continue
             }
-        })
 
-        // for (const input in inputs) {
 
-        //     console.log('input, yo there: ', input)
-        // }
+            if (input.id === "confirm-password-input") {
+                $(input).on('input', handleConfirmPasswordOnChange)
+                continue
+            }
+
+            if (input.id === "confirm-password-input") {
+                $(input).on('input', handleConfirmPasswordOnChange)
+                continue
+            }
+
+            $(input).on('input', handleInputOnChange)
+        }
     }
 
     async function getAllCountries() {
