@@ -1,3 +1,4 @@
+import { getIsNull, getIsTypeValid } from "./utils/utils";
 
 
 (() => {
@@ -17,6 +18,23 @@
     const ACTIVE_INPUT_BOX_SHADOW = '10px 5px 5px grey';
     const INPUT_PLACEHOLER_NAME = 'input-placeholder'
     const MODAL_COUNTRIES_NAME = 'modal-countries-result'
+
+    function constructGetReqUrl(urlStr, params = []) {
+        if (!urlStr) {
+            console.error("Provide url string for the get request.")
+            return;
+        }
+
+        const url = new URL(urlStr)
+
+        if (params.length && params.every(paramArr => Array.isArray(paramArr) && (typeof paramArr[0] === 'string'))) {
+            params.forEach(([key, val]) => {
+                url.searchParams.append(key, JSON.stringify(val))
+            })
+        }
+
+        return url.toString()
+    }
 
     function makeFirstLettersUpperCase(sentence = '') {
         if (!sentence) {
@@ -80,7 +98,7 @@
                     </ul>
                 `)
                 const modal = $(`
-                    <div class='${MODAL_COUNTRIES_NAME} position-absolute'>        
+                    <div class='${MODAL_COUNTRIES_NAME} position-absolute'>
                     </div>
                 `)
 
@@ -113,11 +131,30 @@
                 $('.modal-countries-container').append(modal)
             }
 
-            // if there are results already in the modal, then delete the results, and update 
+            // if there are results already in the modal, then delete the results, and update
         }, 400);
     }
 
-    function handleInputOnChange(event) {
+    async function getIsUserDataUnique(queryObj) {
+        try {
+
+            if (!getIsTypeValid(queryObj, 'object') || getIsNull(queryObj)) {
+                throw Error('Wrong data type for "queryObj." Must be a object.')
+            }
+
+            const url = constructGetReqUrl(window.location.origin, [['query', JSON.stringify(queryObj)]])
+            console.log("url: ", url)
+
+            return ""
+        } catch (error) {
+            console.error('An error has occurred in gettting')
+
+            return null
+        }
+    }
+
+    async function handleInputOnChange(event) {
+        console.log('hey there yo there!')
         // the email must be unique as well
         // can't be the country, confirm password input field
 
@@ -135,8 +172,14 @@
             `)
         }
 
+
+        console.log('hey there meng!')
         if (name === 'username') {
             // check if the username is unique
+            const response = await getIsUserDataUnique({ username: value })
+
+            console.log('response: ', response)
+
         }
 
     }

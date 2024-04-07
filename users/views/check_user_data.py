@@ -10,7 +10,10 @@ import json
 def handle_check_user_data_path(request: HttpRequest):
     try: 
         query = request.GET.get("query")
-        query = json.load(query) if query else query
+        print("query before json loads: ", query)
+        query: dict | None = json.load(query) if query else query
+
+        print(query)
         
         if not query:
             raise CustomError('Query parameter is not found in the request.', 400)

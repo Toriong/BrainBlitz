@@ -44,3 +44,12 @@ export const createObj = (keysAndValsArr = []) => {
         return obj;
     }, {})
 }
+
+
+export function getIsTypeValid(val, correctType) {
+    return typeof val === correctType
+}
+
+export function getIsNull(val) {
+    return (typeof val === 'object') && !val
+}
