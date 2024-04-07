@@ -1,4 +1,4 @@
-import { Element } from "./dom/classes.js";
+
 
 (() => {
     const state = {
@@ -17,18 +17,43 @@ import { Element } from "./dom/classes.js";
     const INPUT_PLACEHOLER_NAME = 'input-placeholder'
     const MODAL_COUNTRIES_NAME = 'modal-countries-result'
 
+    function makeFirstLettersUpperCase(sentence = '') {
+        if (!sentence) {
+            console.error('No sentence was given.')
+            return sentence
+        }
+
+        let sentenceArr = sentence.split(" ")
+        sentenceArr = sentenceArr.map(word => {
+            const firstLetter = word.charAt(0).toLocaleUpperCase()
+            const restOfWord = word.substring(1)
+            return [firstLetter, restOfWord].join('')
+        })
+
+        return sentenceArr.join(" ")
+    }
+
     function handleCountryOptClick(country) {
+        $('#country-input').val(makeFirstLettersUpperCase(country.name))
         state.form.country = country.name;
 
         $(`.${MODAL_COUNTRIES_NAME}`).remove();
 
-        $('#country-img-container').append(`<img src=${country.image} alt=${`${country.name}'s image`} />`);
-
         state.countriesToShow = []
     }
 
-    function handleEventOccurrence(event, val) {
+    function handleOnFocus(event, val) {
         event.target.style.boxShadow = val
+
+        const modal = $(`.${MODAL_COUNTRIES_NAME}`)
+
+        if (modal.length) {
+            modal.remove()
+        }
+    }
+
+    function handleOnBlur(event) {
+        event.target.style.boxShadow = ""
     }
 
     let appendSearchCountriesResultTimeout = null;
@@ -43,9 +68,7 @@ import { Element } from "./dom/classes.js";
             const modalResultsOnDom = $(`.modal-countries-result`)
 
             if (state.countriesToShow.length && !modalResultsOnDom.length) {
-                console.log('hey there!')
-                const countryInputContainerWidth = $(`#country-input-sec`).width()
-                const modalWidth = countryInputContainerWidth - (countryInputContainerWidth * .05)
+                const modalWidth = event.target.offsetWidth - (event.target.offsetWidth * .05)
                 const list = $(`
                     <ul id="countries-list">
                     </ul>
@@ -92,8 +115,8 @@ import { Element } from "./dom/classes.js";
         const inputs = Array.from($('input')).filter(input => input.name !== INPUT_PLACEHOLER_NAME)
 
         inputs.forEach(input => {
-            $(input).on('focus', event => handleEventOccurrence(event, ACTIVE_INPUT_BOX_SHADOW))
-            $(input).on('blur', event => handleEventOccurrence(event, ""))
+            $(input).on('focus', event => handleOnFocus(event, ACTIVE_INPUT_BOX_SHADOW))
+            $(input).on('blur', event => handleOnBlur(event))
 
             console.log('input.id: ', input.id)
 
