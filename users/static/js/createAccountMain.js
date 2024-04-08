@@ -1,5 +1,6 @@
 import { getIsNull, getIsTypeValid } from "./utils/utils";
 
+console.log('hey there meng!');
 
 (() => {
     const state = {

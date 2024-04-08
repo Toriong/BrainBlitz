@@ -6,19 +6,28 @@ from ..models import UserModel
 from utils.general_fns import get_error_response
 import json
 
+
 @csrf_exempt
 def handle_check_user_data_path(request: HttpRequest):
     try: 
         query = request.GET.get("query")
-        print("query before json loads: ", query)
-        query: dict | None = json.load(query) if query else query
-
-        print(query)
+        query: dict | None = json.loads(query) if query else query
         
         if not query:
             raise CustomError('Query parameter is not found in the request.', 400)
+        
+        query_field_names = [key_and_val[0] for key_and_val in query.keys()]
 
-        total_users = UserModel.objects.filter(Q(query)).count()        
+        if 'password' in query_field_names:
+            raise CustomError('Invalid query field name.', 400)
+    
+        query_objects = [Q(**{key: value}) for key, value in query.items()]
+        combined_queries = query_objects[0]
+
+        for query in query_objects[1:]:
+            combined_queries |= query
+
+        total_users = UserModel.objects.filter(combined_queries).count()        
         
         return JsonResponse({ "total_users": total_users })
     except Exception as error:
