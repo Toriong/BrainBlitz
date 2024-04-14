@@ -1,3 +1,5 @@
+console.log('hi');
+
 (() => {
     function getIsTypeValid(val, correctType) {
         return typeof val === correctType
@@ -16,13 +18,21 @@
             country: null,
             email: "",
             password: "",
-            confirmPassword: ""
         },
         countriesToShow: []
     }
     const ACTIVE_INPUT_BOX_SHADOW = '10px 5px 5px grey';
     const INPUT_PLACEHOLER_NAME = 'input-placeholder'
     const MODAL_COUNTRIES_NAME = 'modal-countries-result'
+
+    const getIsEmailInvalid = email => {
+        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (email.match(regex))
+            return true;
+        else
+            return false;
+    };
 
     function constructGetReqUrl(urlStr, params = []) {
         if (!urlStr) {
@@ -68,6 +78,8 @@
 
         state.countriesToShow = []
     }
+
+
 
     function handleOnFocus(event, val) {
         event.target.style.boxShadow = val
@@ -267,22 +279,18 @@
         }
     }
 
-    function handleUserDataUniquenessError(inputFieldName = '', idInputName = '') {
-        const errMsg = `${makeFirstLettersUpperCase(inputFieldName)} has been taken.`
-        $(`#error-list-${idInputName}`).append(`
+
+
+    function handleUserDataUniquenessError(inputFieldName) {
+        const errMsg = `*${makeFirstLettersUpperCase(inputFieldName)} has been taken.`
+        $(`#error-list-${inputFieldName}`).append(`
                 <li id="${inputFieldName}-taken">
                     ${errMsg}
                 </li>
             `)
-
     }
 
     async function handleInputOnChange(event) {
-        console.log('hey there yo there!')
-        // the email must be unique as well
-        // can't be the country, confirm password input field
-
-        // if username, firstName, lastName === must be greater than 1 character
         const fieldsThatMustBeGreaterThan1Char = ['firstName', 'lastName', 'username']
         const { name, value } = event.target;
         const form = state.form;
@@ -302,16 +310,108 @@
             errMsgLi.remove()
         }
 
-        if (name === 'username') {
-            checkIsUserDataUnique({ username: value }, () => handleUserDataUniquenessError('username', 'username'))
+        if ((name === 'username') || (name === 'email')) {
+            const fieldName = (name === 'username') ? 'username' : 'email';
+            checkIsUserDataUnique({ [fieldName]: value }, () => handleUserDataUniquenessError(fieldName))
         }
 
+        const invalidEmailLi = $('#invalid-email')
+        const isEmailValid = (name === 'email') ? getIsEmailInvalid(value) : false;
+
+        if ((name === 'email') && !isEmailValid && !invalidEmailLi.length) {
+            $('#error-list-email').append(`
+                <li id='invalid-email'>
+                    *Must have only one '.', one '@', and no protocal needed (i.e., 'www').
+                </li>
+            `)
+        }
+
+        if ((name === 'email') && isEmailValid) {
+            console.log('remove!!!')
+            $('#invalid-email').remove()
+        }
     }
 
-    function handleConfirmPasswordOnChange(event) {
-        if (state.form.password !== state.form.confirmPassword) {
+    function handlePasswordInputChange(event) {
+        const confirmPasswordInput = Array.from($('#confirmPassword'))?.[0]
+        const passwordInput = Array.from($('#password'))?.[0]
 
+
+        // DELETE ALL ERROR TEXTS FOR THE FOLLOWING REASONS:
+        // -if the password matches 
+        // -if there are no inputs for both the password field and the confirm password field
+
+
+        // WHAT IS HAPPENING:
+        // when the user inputs into the confirm password input field, the following occurs
+        // -the error messages gets append into the error ul of the confirm password input field
+
+        // WHAT I WANT: 
+        // when there is a mismatch betweeen confirm password and password input, when the user is typing 
+        // into the input field of the confirm password field, add the error message into the confirm password 
+        // input field
+
+        // check if the password-mismatch-txt li has been appended onto the DOM
+        let errorLi = $('.password-mismatch-txt')
+        const shortPasswordLi = $('.short-password');
+
+        if (shortPasswordLi.length) {
+            $('.short-password').remove();
         }
+
+        if ((state.form.password !== event.target.value) && !errorLi.length) {
+            confirmPasswordInput.style.border = 'solid 1px red'
+            confirmPasswordInput.style.color = 'red'
+            passwordInput.style.border = 'solid 1px red'
+            passwordInput.style.color = 'red'
+
+            $('#error-list-confirmPassword').append(`
+                <li class='password-mismatch-txt'>
+                    *Passwords must match.
+                </li>
+            `);
+
+            $('#error-list-password').append(`
+                <li class='password-mismatch-txt'>
+                    *Passwords must match.
+                </li>
+            `);
+            return;
+        }
+
+        if (state.form.password !== event.target.value) {
+            return;
+        }
+
+
+        if ((state.form.password === event.target.value) && (state.form.password.length < 8) && !shortPasswordLi.length) {
+            $('#error-list-confirmPassword').empty()
+            $('#error-list-password').empty()
+            $('#error-list-confirmPassword').append(`
+                <li class='short-password'>
+                    *Must be greater than 8 characers.
+                </li>
+            `);
+
+            $('#error-list-password').append(`
+                <li class='short-password'>
+                    *Must be greater than 8 characers.
+                </li>
+            `);
+            return;
+        }
+
+
+        // if the password matches but is not longer than 8 characters then do the following:
+        // clear the error list 
+        // add the following li: Must be longer than 8 characters.
+
+        confirmPasswordInput.style.border = 'solid 1px grey'
+        confirmPasswordInput.style.color = 'black'
+        passwordInput.style.border = 'solid 1px grey'
+        passwordInput.style.color = 'black'
+        $('#error-list-confirmPassword').empty()
+        $('#error-list-password').empty()
     }
 
     function applyEventListnersToInputs() {
@@ -326,8 +426,8 @@
                 continue
             }
 
-            if (input.id === "confirmPassword") {
-                $(input).on('input', handleConfirmPasswordOnChange)
+            if ((input.id === "confirmPassword")) {
+                $(input).on('input', handlePasswordInputChange)
                 continue
             }
 
