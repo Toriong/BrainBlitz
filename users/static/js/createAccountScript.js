@@ -389,22 +389,17 @@ console.log('hi');
             $('#error-list-password').empty()
             $('#error-list-confirmPassword').append(`
                 <li class='short-password'>
-                    *Must be greater than 8 characers.
+                    *Must be greater than 7 characers.
                 </li>
             `);
 
             $('#error-list-password').append(`
                 <li class='short-password'>
-                    *Must be greater than 8 characers.
+                    *Must be greater than 7 characers.
                 </li>
             `);
             return;
         }
-
-
-        // if the password matches but is not longer than 8 characters then do the following:
-        // clear the error list 
-        // add the following li: Must be longer than 8 characters.
 
         confirmPasswordInput.style.border = 'solid 1px grey'
         confirmPasswordInput.style.color = 'black'
@@ -432,6 +427,58 @@ console.log('hi');
             }
 
             $(input).on('input', handleInputOnChange)
+        }
+    }
+
+    function handleSubmitBtnClick() {
+        // CASE: the password don't match
+        // present the error messages for both of the passwords 
+
+        // check for the following: 
+        // if the user name is unique
+        // if the first name is greater than 2 characters 
+        // if the last name is greater than 2 characters 
+        // if the country selection is valid 
+        // if the email is valid 
+        // if the email was not taken
+        const confirmPassword = $('#confirmPassword')
+        const { country, email, firstName, lastName, password, username } = state.form;
+        let errors = [];
+        const isEmailValid = getIsEmailInvalid(email);
+
+        if (!isEmailValid) {
+            errors.push({ type: 'invalidEmail', elementIdsToHighlight: ['email'], errMsg: "Must have only one '.', one '@', and no protocal needed (i.e., 'www')." })
+        } else {
+            checkIsUserDataUnique({ email: email }, () => handleUserDataUniquenessError(email))
+        }
+
+        if (username.length >= 2) {
+            isUsernameUnique = checkIsUserDataUnique({ username: username }, () => handleUserDataUniquenessError(username))
+        } else {
+            checkIsUserDataUnique({ username: username }, () => handleUserDataUniquenessError(username))
+        }
+
+        if (confirmPassword !== password) {
+            errors.push({ type: 'passwordMismatch', elementIdsToHighlight: ['confirmPassword', 'password'], errMsg: "Password must match." })
+        } else if (password.length < 8) {
+            errors.push({ type: 'shortPassword', elementIdsToHighlight: ['confirmPassword', 'password'], errMsg: "Must be greater than 7 character" })
+        }
+
+        if (!state.countries.includes(country)) {
+            errors.push({ type: "invalidCountry", elementIdsToHighlight: ['country'], errMsg: 'Invalid country selection.' })
+        }
+
+        if (firstName.length < 2) {
+            errors.push({ type: "invalidFirstName", elementIdsToHighlight: ["firstName"], errMsg: "Must be greater than 1 character." })
+        }
+
+        if (lastName.length < 2) {
+            errors.push({ type: "invalidLastName", elementIdsToHighlight: ["lastName"], errMsg: "Must be greater than 1 character." })
+        }
+
+        if (errors.length) {
+            // GOAL: display the errors onto the UI. 
+            return;
         }
     }
 
